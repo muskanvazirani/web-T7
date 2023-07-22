@@ -68,3 +68,11 @@ app.delete("/delete/:id", async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json({ message: "Users retrieved", success: true, users: users });
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+});
